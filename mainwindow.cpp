@@ -25,7 +25,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(100);
     ui->progressBar->setValue(0);
+    if (!ui->centralwidget->layout()) {
+         QVBoxLayout *mainLayout = new QVBoxLayout();
 
+         mainLayout->addWidget(ui->groupBox);
+         mainLayout->addWidget(ui->comboBox);
+         mainLayout->addWidget(ui->pushButton);
+         mainLayout->addWidget(ui->progressBar);
+
+         ui->centralwidget->setLayout(mainLayout);
+     }
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onButtonClicked);
 }
 
